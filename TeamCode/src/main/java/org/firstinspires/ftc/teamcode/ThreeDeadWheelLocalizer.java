@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.DualNum;
 import com.acmerobotics.roadrunner.Time;
@@ -10,7 +12,12 @@ import com.acmerobotics.roadrunner.ftc.FlightRecorder;
 import com.acmerobotics.roadrunner.ftc.PositionVelocityPair;
 import com.acmerobotics.roadrunner.ftc.RawEncoder;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.robocol.TelemetryMessage;
+
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @Config
 public final class ThreeDeadWheelLocalizer implements Localizer {
@@ -29,9 +36,13 @@ public final class ThreeDeadWheelLocalizer implements Localizer {
     private int lastPar0Pos, lastPar1Pos, lastPerpPos;
 
     public ThreeDeadWheelLocalizer(HardwareMap hardwareMap, double inPerTick) {
+
         par0 = new RawEncoder(hardwareMap.get(DcMotorEx.class, "leftFront"));
         par1 = new RawEncoder(hardwareMap.get(DcMotorEx.class, "rightFront"));
         perp = new RawEncoder(hardwareMap.get(DcMotorEx.class, "leftBack"));
+
+
+        par1.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lastPar0Pos = par0.getPositionAndVelocity().position;
         lastPar1Pos = par1.getPositionAndVelocity().position;
