@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.tuning;
 
 import com.acmerobotics.roadrunner.Pose2d;
+// TODO: remove Actions from the core module?
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -19,7 +20,7 @@ public final class ManualFeedbackTuner extends LinearOpMode {
 
             while (opModeIsActive()) {
                 Actions.runBlocking(
-                    drive.actionBuilder(new Pose2d(0, 0, 0))
+                    drive.actionBuilder(drive.pose)
                             .lineToX(DISTANCE)
                             .lineToX(0)
                             .build());
@@ -31,7 +32,7 @@ public final class ManualFeedbackTuner extends LinearOpMode {
 
             while (opModeIsActive()) {
                 Actions.runBlocking(
-                    drive.actionBuilder(new Pose2d(0, 0, 0))
+                    drive.actionBuilder(drive.pose)
                             .lineToX(DISTANCE)
                             .lineToX(0)
                             .build());
